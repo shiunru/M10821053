@@ -8,10 +8,11 @@ url = 'https://www.dcard.tw/f'
 driver.get(url)
 
 inputElement = driver.find_element_by_tag_name('input')
-inputElement.send_keys('python')
+inputElement.send_keys('tensorflow')
 
 driver.find_element_by_css_selector('button.sc-1ehu1w3-2').click()
 time.sleep(2)
+
 
 html = driver.page_source
 soup =bs(html, 'html.parser')
@@ -28,14 +29,15 @@ author = []
 times = []
 for i in range(len(meta_datas)):
     if i % 3 == 0:
-        forums.append(meta_datas[i])
+        if meta_datas[i] == '軟體工程師':
+            forums.append(meta_datas[i])
     if i % 3 == 1:
         author.append(meta_datas[i])
     if i % 3 == 2:
         times.append(meta_datas[i])
 
 titles =[]
-for i in soup.find_all('h2',{'class':'sc-1v1d5rx-3 eihOFJ'}):
+for i in soup.find_all('h2',{'class':'sc-1v1d5rx-3'}):
     titles.append(i.text)
 print(titles)
 
