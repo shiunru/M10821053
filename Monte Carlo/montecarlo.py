@@ -31,3 +31,4 @@ for i in range(time):
     w = random.randint(4, 8)
     y_cyc = mean + x + a * math.sin(2 * math.pi*i/w)
     print(y_cyc)
+    #1
