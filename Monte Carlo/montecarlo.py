@@ -2,6 +2,9 @@ import random
 import pandas as pd
 import numpy as np
 import math
+from sklearn.preprocessing import LabelBinarizer
+from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 mean = 30
 sigma = 0.05
 time = 25
@@ -102,9 +105,17 @@ print(ccp_CYC,ccp_CYC_label)
 CCP_label = np.concatenate((ccp_NOR_label, ccp_US_label, ccp_DS_label, ccp_UT_label, ccp_DT_label, ccp_CYC_label), axis=0)
 CCP = np.concatenate((ccp_NOR, ccp_US, ccp_DS, ccp_UT, ccp_DT, ccp_CYC), axis=0)
 
-#分為 train  test  75%訓練  25%測試
-(trainX, testX, trainY, testY) = train_test_split(CCP ,
+#分為 train  test  75%訓練  25%測試  及 標準化 0~1
+CCP_normalize = preprocessing.normalize(CCP, norm='l2')
+
+(trainX, testX, trainY, testY) = train_test_split(CCP_normalize ,
     CCP_label.astype("int"), test_size=0.25, random_state=42)
 
-# np.random.seed(777)  不知道要怎用random
 
+#處理 label
+le = LabelBinarizer()
+trainY = le.fit_transform(trainY)
+testY = le.transform(testY)
+
+
+# np.random.seed(777)  不知道要怎用random
