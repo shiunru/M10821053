@@ -12,7 +12,7 @@ sample = 200
 
 # normal data
 ccp_NOR = []
-for j in range(sample) :
+for j in range(sample):
     ccp_nor = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
@@ -32,8 +32,9 @@ for j in range(sample):
     ccp_us = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        s = random.uniform(1.5 * sigma, 3 * sigma)
+        s = random.normalvariate(0, random.uniform(1.5 * sigma, 3 * sigma))
         x_us = mean + x + s
+
         ccp_us.append(x_us)
     ccp_US.append(ccp_us)
 ccp_US = np.array(ccp_US)
