@@ -32,7 +32,7 @@ for j in range(sample):
     ccp_us = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        s = random.uniform(1.5 * sigma, 3 * sigma)
+        s = random.normalvariate(1.5 * sigma, 3 * sigma)
         x_us = mean + x + s
         ccp_us.append(x_us)
     ccp_US.append(ccp_us)
@@ -47,7 +47,7 @@ for j in range(sample):
     ccp_ds = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        s = random.uniform(1.5 * sigma, 3 * sigma)
+        s = random.normalvariate(1.5 * sigma, 3 * sigma)
         x_ds = mean + x + s
         ccp_ds.append(x_ds)
     ccp_DS.append(ccp_ds)
@@ -62,12 +62,12 @@ for j in range(sample):
     ccp_ut = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        d = random.uniform(0.1 * sigma, 0.3 * sigma)
+        d = random.normalvariate(0.1 * sigma, 0.3 * sigma)
         x_ut = mean + x + d*i
         ccp_ut.append(x_ut)
     ccp_UT.append(ccp_ut)
 ccp_UT = np.array(ccp_UT)
-ccp_UT_label = np.full((sample),3)
+ccp_UT_label = np.full((sample), 3)
 print(ccp_UT,ccp_UT_label)
 
 
@@ -77,7 +77,7 @@ for j in range(sample):
     ccp_dt = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        d = random.uniform(0.1 * sigma, 0.3 * sigma)
+        d = random.normalvariate(0.1 * sigma, 0.3 * sigma)
         x_dt = mean + x + d*i
         ccp_dt.append(x_dt)
     ccp_DT.append(ccp_dt)
@@ -92,8 +92,8 @@ for j in range(0, 200) :
     ccp_cyc = []
     for i in range(time):
         x = random.normalvariate(0, sigma)
-        a = random.uniform(1.5 * sigma, 4 * sigma)
-        w = random.randint(4, 8)
+        a = random.normalvariate(1.5 * sigma, 4 * sigma)
+        w = random.normalvariate(4, 8)
         x_cyc = mean + x + a * math.sin(2 * math.pi*i/w)
         ccp_cyc.append(x_cyc)
     ccp_CYC.append(ccp_cyc)
