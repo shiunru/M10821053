@@ -1,15 +1,16 @@
 import math
 import random as rd
 import numpy as np
-
+from model.parameter import Parameter, Sample
 # 基本參數
-mean = 50
-sigma = 1
+mean = 30
+sigma = 0.05
 sample_size = 25
 sample_number = 200
 
 
 # normal type
+
 def normal_type():
     global mean, sigma, sample_size, sample_number
 
@@ -160,3 +161,5 @@ def stratification_type():
     label_str = np.full((sample_number, 1), 8)
     print(CCP_STR)
     print(label_str)
+
+
