@@ -134,3 +134,5 @@ CCP_STR = np.array(CCP_STR)
 label_str = np.full((sample[0].number, 1), 8)
 print(CCP_STR)
 print(label_str)
+
+
