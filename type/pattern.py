@@ -1,10 +1,11 @@
 import numpy as np
 import random as rd
 import math
-from model.parameter import Parameter, Sample
+from model.parameter import Parameter, Sample, Weight
 
 sample = [Sample()]
-parameter =[Parameter()]
+parameter = [Parameter()]
+weight = [Weight()]
 # normal type
 def normal_type():
     CCP_NOR = []
@@ -128,3 +129,15 @@ def stratification_type():
     label_str = np.full((sample[0].number, 1), 8)
     return CCP_STR, label_str
 
+def mix_type():
+    CCP_MIX = []
+    for i in range(sample[0].number):
+        ccp_mix = []
+        for j in range(sample[0].size):
+            x = round(rd.normalvariate(0, parameter[0].sd), 3)
+            y_normal = weight[0].w1*(parameter[0].mean + x * parameter[0].sd)+weight[0].w2*(parameter[0].mean + x * parameter[0].sd + parameter[0].gradient * j)
+            ccp_mix.append(round(y_normal, 3))
+        CCP_MIX.append(ccp_mix)
+    CCP_MIX = np.array(CCP_MIX)
+    label_mix = np.full((sample[0].number, 1), 1)
+    return CCP_MIX, label_mix

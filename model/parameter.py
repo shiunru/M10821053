@@ -24,7 +24,12 @@ class Parameter:
 
 class Sample:
 
-    def __init__(self, size=30, number=1):
+    def __init__(self, size=30, number=100):
         self.size = size
         self.number = number
 
+class Weight:
+
+    def __init__(self, w1=0.4, w2=0.6):
+        self.w1 = w1
+        self.w2 = w2
