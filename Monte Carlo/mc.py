@@ -13,4 +13,7 @@ CCP_CYC, label_cyc = type.cycle_type()
 CCP_SYS, label_sys = type.systematic_type()
 CCP_STR, label_str = type.stratification_type()
 CCP_MIX, label_mix = type.mix_type()
-print(CCP_MIX, label_mix)
+print(CCP_US)
+
+
+
