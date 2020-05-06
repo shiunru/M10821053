@@ -17,5 +17,5 @@ CCP_DT_US, label_dt_us = mixpattern.dt_us_type()
 CCP_DT_DS, label_dt_ds = mixpattern.dt_ds_type()
 CCP_UT_CYC, label_ut_cyc = mixpattern.ut_cyc_type()
 CCP_DT_CYC, label_dt_cyc = mixpattern.dt_cyc_type()
-print(CCP_UT_US.shape)
+print(CCP_UT)
 

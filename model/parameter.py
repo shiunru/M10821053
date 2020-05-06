@@ -26,7 +26,7 @@ class Parameter:
 
 class Sample:
 
-    def __init__(self, size=30, number=500):
+    def __init__(self, size=30, number=1):
         self.size = size
         self.number = number
 
