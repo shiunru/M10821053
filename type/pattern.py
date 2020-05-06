@@ -10,7 +10,7 @@ def normal_type():
     for i in range(sample[0].number):
         ccp_nor = []
         for j in range(sample[0].size):
-            x = round(rng.normal(0, parm[0].sd), 3)
+            x = round(rng.normal(0, parm[0].sd), 2)
             y_normal = parm[0].mean + x * parm[0].sd
             ccp_nor.append(round(y_normal, 3))
         CCP_NOR.append(ccp_nor)
@@ -111,7 +111,7 @@ def systematic_type():
         ccp_sys = []
         for j in range(sample[0].size):
             x = rng.normal(0, parm[0].sd)
-            y_sys = parm[0].mean + x * parm[0].sd + parm[0].systematic_departure * -1 * np.sqrt(j)
+            y_sys = parm[0].mean + x * parm[0].sd + parm[0].systematic_departure * np.power(-1, j)
             ccp_sys.append(round(y_sys, 3))
         CCP_SYS.append(ccp_sys)
     CCP_SYS = np.array(CCP_SYS)

@@ -24,7 +24,6 @@ class Parameter:
         self.shift_magnitude = shift_magnitude
         self.shift_position = shift_position
 
-
 class Sample:
 
     def __init__(self, size=30, number=1):
