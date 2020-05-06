@@ -22,6 +22,10 @@ def ut_us_type():
                 y_ut_us = (w[0].four * (parm[0].mean + x * parm[0].sd + parm[0].shift_magnitude * k)
                            + w[0].six * (parm[0].mean + x * parm[0].sd + parm[0].gradient * j))
             else:
+                if j >= parm[0].shift_position:
+                    k = 1
+                else:
+                    k = 0
                 y_ut_us = (w[0].six * (parm[0].mean + x * parm[0].sd + parm[0].shift_magnitude * k)
                            + w[0].four * (parm[0].mean + x * parm[0].sd + parm[0].gradient * j))
             ccp_ut_us.append(round(y_ut_us, 3))
@@ -46,6 +50,10 @@ def ut_ds_type():
                 y_ut_ds = (w[0].four * (parm[0].mean + x * parm[0].sd - parm[0].shift_magnitude * k)
                            + w[0].six * (parm[0].mean + x * parm[0].sd + parm[0].gradient * j))
             else:
+                if j >= parm[0].shift_position:
+                    k = 1
+                else:
+                    k = 0
                 y_ut_ds = (w[0].six * (parm[0].mean + x * parm[0].sd - parm[0].shift_magnitude * k)
                            + w[0].four * (parm[0].mean + x * parm[0].sd + parm[0].gradient * j))
             ccp_ut_ds.append(round(y_ut_ds, 3))
@@ -70,6 +78,10 @@ def dt_us_type():
                 y_dt_us = (w[0].four * (parm[0].mean + x * parm[0].sd + parm[0].shift_magnitude * k)
                            + w[0].six * (parm[0].mean + x * parm[0].sd - parm[0].gradient * j))
             else:
+                if j >= parm[0].shift_position:
+                    k = 1
+                else:
+                    k = 0
                 y_dt_us = (w[0].six * (parm[0].mean + x * parm[0].sd + parm[0].shift_magnitude * k)
                            + w[0].four * (parm[0].mean + x * parm[0].sd - parm[0].gradient * j))
             ccp_dt_us.append(round(y_dt_us, 3))
