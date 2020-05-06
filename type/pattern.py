@@ -1,19 +1,17 @@
 import numpy as np
-import math
-from model.parameter import Parameter, Sample, Weight
-
+from model.parameter import Parameter, Sample
 rng = np.random.RandomState(45)
 sample = [Sample()]
-parameter = [Parameter()]
-weight = [Weight()]
+parm = [Parameter()]
+
 # normal type
 def normal_type():
     CCP_NOR = []
     for i in range(sample[0].number):
         ccp_nor = []
         for j in range(sample[0].size):
-            x = round(rng.normal(0, parameter[0].sd), 3)
-            y_normal = parameter[0].mean + x * parameter[0].sd
+            x = round(rng.normal(0, parm[0].sd), 3)
+            y_normal = parm[0].mean + x * parm[0].sd
             ccp_nor.append(round(y_normal, 3))
         CCP_NOR.append(ccp_nor)
     CCP_NOR = np.array(CCP_NOR)
@@ -28,8 +26,8 @@ def upward_trend_type():
     for i in range(sample[0].number):
         ccp_ut = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            y_ut = parameter[0].mean + x * parameter[0].sd + parameter[0].gradient * j
+            x = rng.normal(0, parm[0].sd)
+            y_ut = parm[0].mean + x * parm[0].sd + parm[0].gradient * j
             ccp_ut.append(round(y_ut, 3))
         CCP_UT.append(ccp_ut)
     CCP_UT = np.array(CCP_UT)
@@ -43,8 +41,8 @@ def downward_trend_type():
     for i in range(sample[0].number):
         ccp_dt = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            y_dt = parameter[0].mean + x * parameter[0].sd - parameter[0].gradient * j
+            x = rng.normal(0, parm[0].sd)
+            y_dt = parm[0].mean + x * parm[0].sd - parm[0].gradient * j
             ccp_dt.append(round(y_dt, 3))
         CCP_DT.append(ccp_dt)
     CCP_DT = np.array(CCP_DT)
@@ -58,12 +56,12 @@ def upward_shift_type():
     for i in range(sample[0].number):
         ccp_us = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            if j >= parameter[0].shift_position:
+            x = rng.normal(0, parm[0].sd)
+            if j >= parm[0].shift_position:
                 k = 1
             else:
                 k = 0
-            y_us = parameter[0].mean + x * parameter[0].sd + parameter[0].shift_magnitude * k
+            y_us = parm[0].mean + x * parm[0].sd + parm[0].shift_magnitude * k
             ccp_us.append(round(y_us, 3))
         CCP_US.append(ccp_us)
     CCP_US = np.array(CCP_US)
@@ -77,12 +75,12 @@ def downward_shift_type():
     for i in range(sample[0].number):
         ccp_ds = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            if j >= parameter[0].shift_position:
+            x = rng.normal(0, parm[0].sd)
+            if j >= parm[0].shift_position:
                 k = 1
             else:
                 k = 0
-            y_ds = parameter[0].mean + x * parameter[0].sd - parameter[0].shift_magnitude * k
+            y_ds = parm[0].mean + x * parm[0].sd - parm[0].shift_magnitude * k
             ccp_ds.append(round(y_ds, 3))
         CCP_DS.append(ccp_ds)
     CCP_DS = np.array(CCP_DS)
@@ -96,9 +94,9 @@ def cycle_type():
     for i in range(sample[0].number):
         ccp_cyc = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            y_cyc = parameter[0].mean + x * parameter[0].sd + parameter[0].amplitude * math.sin(
-                (2 * math.pi * j) / parameter[0].period)
+            x = rng.normal(0, parm[0].sd)
+            y_cyc = parm[0].mean + x * parm[0].sd + parm[0].amplitude * np.sin(
+                (2 * np.pi * j) / parm[0].period)
             ccp_cyc.append(round(y_cyc, 3))
         CCP_CYC.append(ccp_cyc)
     CCP_CYC = np.array(CCP_CYC)
@@ -112,8 +110,8 @@ def systematic_type():
     for i in range(sample[0].number):
         ccp_sys = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            y_sys = parameter[0].mean + x * parameter[0].sd + parameter[0].systematic_departure * -1 * math.sqrt(j)
+            x = rng.normal(0, parm[0].sd)
+            y_sys = parm[0].mean + x * parm[0].sd + parm[0].systematic_departure * -1 * np.sqrt(j)
             ccp_sys.append(round(y_sys, 3))
         CCP_SYS.append(ccp_sys)
     CCP_SYS = np.array(CCP_SYS)
@@ -127,8 +125,8 @@ def stratification_type():
     for i in range(sample[0].number):
         ccp_str = []
         for j in range(sample[0].size):
-            x = rng.normal(0, parameter[0].sd)
-            y_str = parameter[0].mean + x * parameter[0].random_noise
+            x = rng.normal(0, parm[0].sd)
+            y_str = parm[0].mean + x * parm[0].random_noise
             ccp_str.append(round(y_str, 3))
         CCP_STR.append(ccp_str)
     CCP_STR = np.array(CCP_STR)
@@ -136,16 +134,4 @@ def stratification_type():
     return CCP_STR, label_str
 
 
-def mix_type():
-    CCP_MIX = []
-    for i in range(sample[0].number):
-        ccp_mix = []
-        for j in range(sample[0].size):
-            x = round(rng.normal(0, parameter[0].sd), 3)
-            y_normal = weight[0].w1 * (parameter[0].mean + x * parameter[0].sd) + weight[0].w2 * (
-                        parameter[0].mean + x * parameter[0].sd + parameter[0].gradient * j)
-            ccp_mix.append(round(y_normal, 3))
-        CCP_MIX.append(ccp_mix)
-    CCP_MIX = np.array(CCP_MIX)
-    label_mix = np.full((sample[0].number, 1), 9)
-    return CCP_MIX, label_mix
+

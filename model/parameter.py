@@ -1,10 +1,11 @@
-import random as rd
 import numpy as np
 rng = np.random.RandomState(45)
+u = 0
 std = 1
+
 class Parameter:
-    def __init__(self, mean=0,
-                 sd=1,
+    def __init__(self, mean=u,
+                 sd=std,
                  random_noise=rng.uniform(0.2*std, 0.4*std),
                  systematic_departure=rng.uniform(1*std, 3*std),
                  amplitude=rng.uniform(1.5*std, 2.5*std),
@@ -32,6 +33,6 @@ class Sample:
 
 class Weight:
 
-    def __init__(self, w1=0.4, w2=0.6):
-        self.w1 = w1
-        self.w2 = w2
+    def __init__(self, four=0.4, six=0.6):
+        self.four = four
+        self.six = six
