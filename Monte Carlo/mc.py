@@ -1,7 +1,6 @@
 import type.pattern as pattern
 import type.mixpattern as mixpattern
-from model.parameter import Sample
-sample = [Sample()]
+
 # basic
 CCP_NOR, label_nor = pattern.normal_type()
 CCP_UT, label_ut = pattern.upward_trend_type()

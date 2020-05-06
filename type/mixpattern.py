@@ -147,5 +147,5 @@ def dt_cyc_type():
             ccp_dt_cyc.append(round(y_dt_cyc, 3))
         CCP_DT_CYC.append(ccp_dt_cyc)
     CCP_DT_CYC = np.array(CCP_DT_CYC)
-    label_dt_cyc = np.full((sample[0].number, 1), 13)
+    label_dt_cyc = np.full((sample[0].number, 1), 14)
     return CCP_DT_CYC, label_dt_cyc
